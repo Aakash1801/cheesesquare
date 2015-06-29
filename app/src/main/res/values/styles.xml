@@ -21,6 +21,11 @@
     </style>
 
     <style name="Base.Theme.DesignDemo" parent="Theme.AppCompat.Light.NoActionBar">
+
+        //requires minimun API 19
+      <item name="android:windowTranslucentStatus">true</item>
+      <item name="android:fitsSystemWindows">true</item>
+
         <item name="colorPrimary">#673AB7</item>
         <item name="colorPrimaryDark">#512DA8</item>
         <item name="colorAccent">#FF4081</item>

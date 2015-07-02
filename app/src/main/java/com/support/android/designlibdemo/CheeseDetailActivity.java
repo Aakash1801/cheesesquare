@@ -17,12 +17,14 @@
 package com.support.android.designlibdemo;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -43,13 +45,33 @@ public class CheeseDetailActivity extends AppCompatActivity {
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        if(Build.VERSION.SDK_INT>= 21)
+        {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+            toolbar.setPadding(0,getStatusBarHeight(),0,0);
+        }
+
 
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbar.setTitle(cheeseName);
+
+
+            collapsingToolbar.setTitle(cheeseName);
+            //collapsingToolbar.setTranslationX();
 
         loadBackdrop();
+    }
+
+
+    public int getStatusBarHeight()
+    {
+        //use flags and methods to calculate dynamically (have to work on it)
+        return 40;
     }
 
     @Override
